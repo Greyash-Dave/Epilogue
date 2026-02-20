@@ -1,0 +1,29 @@
+{
+    "identifier": "default",
+    "description": "Default capabilities for the app",
+    "windows": [
+        "main"
+    ],
+    "permissions": [
+        "core:default",
+        {
+            "identifier": "fs:allow-read-text-file",
+            "allow": [
+                {
+                    "path": "**"
+                }
+            ]
+        },
+        {
+            "identifier": "fs:allow-read-file",
+            "allow": [
+                {
+                    "path": "**"
+                }
+            ]
+        },
+        "fs:default",
+        "core:window:allow-set-fullscreen",
+        "core:window:allow-is-fullscreen"
+    ]
+}

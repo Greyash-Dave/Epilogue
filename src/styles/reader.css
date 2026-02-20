@@ -1,0 +1,110 @@
+/* ═══════════════════════════════════════════════════
+   Reading Container — shared base
+   ═══════════════════════════════════════════════════ */
+#reader-container {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.95);
+    /* margin: var(--spacing-lg); */
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 20px var(--shadow);
+    transition: background 0.3s ease, opacity 0.3s ease, backdrop-filter 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    contain: layout style paint;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Glassmorphism effect — backdrop-filter value set via JS */
+#reader-container.glass {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    will-change: backdrop-filter, opacity;
+}
+
+/* ── Paged Mode ────────────────────────────────────
+   No scrollbars at all. epub.js handles page turns. */
+#reader-container.paged-mode {
+    overflow: hidden;
+}
+
+/* ── Scroll Mode (vertical continuous scroll) ───── */
+#reader-container.scroll-mode {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Scrollbar styling for vertical scroll mode */
+#reader-container.scroll-mode {
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: rgba(255, 255, 255, 0.25);
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
+}
+
+#reader-container.scroll-mode::-webkit-scrollbar {
+    width: 6px;
+}
+
+#reader-container.scroll-mode::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+#reader-container.scroll-mode::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: var(--radius-sm);
+}
+
+#reader-container.scroll-mode::-webkit-scrollbar-thumb:hover {
+    filter: brightness(1.3);
+}
+
+/* ═══════════════════════════════════════════════════
+   EPUB content styling
+   ═══════════════════════════════════════════════════ */
+#reader-container iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+#reader-container .epub-container {
+    font-family: var(--font-reading);
+    font-size: var(--font-size-reading);
+    line-height: var(--line-height-reading);
+    color: #1a1a1a;
+    padding: var(--spacing-xl);
+    display: flex;
+    /* flex-direction: column; */
+    /* Stack items vertically [web:2] */
+    /* width: 100%; */
+    /* Dynamic width to parent/container */
+    /* max-width: 100%; */
+    /* Prevent exceeding parent width [web:2] */
+    /* height: 400px; */
+    /* Fixed or max-height for scroll area */
+    /* overflow-y: scroll; */
+    /* Vertical scroll only [web:3] */
+    /* overflow-x: hidden; */
+    /* Explicitly block horizontal [web:4] */
+
+}
+
+/* ═══════════════════════════════════════════════════
+   Placeholder state (no book open)
+   ═══════════════════════════════════════════════════ */
+#reader-container.empty::before {
+    content: 'Open an EPUB file to start reading';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-reading);
+    font-size: 24px;
+    color: var(--text-secondary);
+    text-align: center;
+    white-space: nowrap;
+}

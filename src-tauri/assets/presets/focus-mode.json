@@ -1,0 +1,26 @@
+{
+    "version": "2.0",
+    "name": "Focus Mode",
+    "author": "Epilogue",
+    "description": "Clean, modern, bright interface",
+    "background": {
+        "type": "image",
+        "path": "media/backgrounds/gradient.svg"
+    },
+    "overlay": {
+        "color": "#FFFFFF",
+        "opacity": 0.0
+    },
+    "reader": {
+        "opacity": 0.85,
+        "backgroundColor": "#FFFFFF",
+        "textColor": "#1C1C1E",
+        "fontFamily": "sans-serif",
+        "fontSize": 18,
+        "readingMode": "paginated",
+        "glassmorphism": true,
+        "glassBlur": 24,
+        "scrollbarTrack": "transparent",
+        "scrollbarThumb": "#C7C7CC"
+    }
+}

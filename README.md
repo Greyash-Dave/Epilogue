@@ -3,7 +3,15 @@
 A beautiful, minimalist EPUB reader with atmospheric backgrounds and customizable mood presets.
 
 ![Status](https://img.shields.io/badge/status-in%20development-orange)
+![Status](https://img.shields.io/badge/status-in%20development-orange)
 ![Platform](https://img.shields.io/badge/platform-Desktop-blue)
+![License](https://img.shields.io/github/license/Greyash-Dave/Epilogue)
+
+## 📥 Download
+
+**[Download the latest version for Windows](https://github.com/Greyash-Dave/Epilogue/releases/latest)**
+
+*Note: For macOS and Linux, please build from source for now (see below).*
 
 ## Overview
 
@@ -249,7 +257,7 @@ This project is currently in active development. Contributions will be welcome o
 
 ## License
 
-TBD
+MIT License. See [LICENSE](./LICENSE) for details.
 
 ## Acknowledgments
 

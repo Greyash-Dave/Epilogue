@@ -1,0 +1,26 @@
+{
+    "version": "2.0",
+    "name": "Cozy Reading",
+    "author": "Epilogue",
+    "description": "Warm, hearth-side atmosphere",
+    "background": {
+        "type": "image",
+        "path": "media/backgrounds/fireplace.svg"
+    },
+    "overlay": {
+        "color": "#3E2723",
+        "opacity": 0.15
+    },
+    "reader": {
+        "opacity": 0.90,
+        "backgroundColor": "#FAF3E0",
+        "textColor": "#4A3B32",
+        "fontFamily": "serif",
+        "fontSize": 18,
+        "readingMode": "paginated",
+        "glassmorphism": true,
+        "glassBlur": 16,
+        "scrollbarTrack": "#E5DCD0",
+        "scrollbarThumb": "#8D7B68"
+    }
+}

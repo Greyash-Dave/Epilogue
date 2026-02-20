@@ -1,0 +1,17 @@
+<!-- Placeholder SVG for Fireplace Background -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="fireplace-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a2617;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b4513;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a0f0a;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="70%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#ff8c42;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#4a2617;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#fireplace-gradient)"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+</svg>

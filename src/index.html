@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epilogue - Your books, your atmosphere</title>
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/layers.css">
+  <link rel="stylesheet" href="./styles/reader.css">
+  <link rel="stylesheet" href="./styles/presets.css">
+  <link rel="stylesheet" href="./styles/library.css">
+  <link rel="stylesheet" href="./styles/toast.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Background Layer (z-index: 1) -->
+    <div id="background-layer">
+      <img id="background-image" alt="Background" />
+      <video id="background-video" muted loop playsinline disablepictureinpicture preload="auto"></video>
+    </div>
+
+    <!-- Overlay Layer (z-index: 2) -->
+    <div id="overlay-layer"></div>
+
+    <!-- Content Layer (z-index: 3) -->
+    <div id="content-layer">
+      <!-- Top Bar (Menu, etc) -->
+      <div id="top-bar" class="fade-in">
+        <div class="left-controls">
+          <div class="app-brand">Epilogue</div>
+        </div>
+
+        <div class="nav-controls">
+          <button id="prev-btn" class="icon-btn" title="Previous Page">
+            <!-- Lucide ChevronLeft -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <div class="title-display">
+            <span id="book-title">Epilogue</span>
+          </div>
+          <button id="next-btn" class="icon-btn" title="Next Page">
+            <!-- Lucide ChevronRight -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="right-controls">
+          </svg>
+          </button>
+
+          <div class="chapter-selector-wrapper" style="display: none;">
+            <select id="chapter-select" class="chapter-select" title="Jump to Chapter">
+              <option value="" disabled selected>Chapters</option>
+            </select>
+          </div>
+
+          <button id="home-btn" class="icon-btn" title="Back to Library (Esc)">
+            <!-- Lucide Library -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="m16 6 4 14" />
+              <path d="M12 6v14" />
+              <path d="M8 8v12" />
+              <path d="M4 4v16" />
+            </svg>
+          </button>
+          <button id="open-epub-btn" class="icon-btn" title="Open EPUB (Ctrl+O)">
+            <!-- Lucide FolderOpen -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-3.25 7a2 2 0 0 1-1.8 1.5H9a2 2 0 0 1-2-2Z" />
+              <path d="M3 20a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l2 3h6a2 2 0 0 1 2 2v2" />
+            </svg>
+          </button>
+          <button id="preset-btn" class="icon-btn" title="Settings (Ctrl+P)">
+            <!-- Lucide SlidersHorizontal -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="21" x2="14" y1="4" y2="4" />
+              <line x1="10" x2="3" y1="4" y2="4" />
+              <line x1="21" x2="12" y1="12" y2="12" />
+              <line x1="8" x2="3" y1="12" y2="12" />
+              <line x1="21" x2="16" y1="20" y2="20" />
+              <line x1="8" x2="3" y1="20" y2="20" />
+              <line x1="14" x2="14" y1="2" y2="6" />
+              <line x1="8" x2="8" y1="10" y2="14" />
+              <line x1="16" x2="16" y1="18" y2="22" />
+            </svg>
+          </button>
+          <button id="help-btn" class="icon-btn" title="Shortcuts (?)">
+            <!-- Lucide CircleHelp -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+              <path d="M12 17h.01" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Library / Recent Books View (Visible when no book is open) -->
+      <div id="recent-books-container" class="library-view hidden fade-in">
+        <h2>Continue Reading</h2>
+        <div id="recent-books-grid" class="books-grid">
+          <!-- Book cards injected here -->
+        </div>
+      </div>
+      <!-- Reading Container -->
+      <div id="reader-container"></div>
+    </div>
+
+    <!-- Settings Panel (hidden by default) -->
+    <div id="preset-panel" class="hidden">
+      <div class="panel-content">
+        <div class="panel-header">
+          <h3>Settings</h3>
+          <button id="close-preset-panel" class="icon-btn panel-close-btn" title="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="settings-tabs">
+          <button class="tab-btn active" data-tab="general">General</button>
+          <button class="tab-btn" data-tab="appearance">Appearance</button>
+          <button class="tab-btn" data-tab="atmosphere">Atmosphere</button>
+        </div>
+
+        <!-- General Tab: Presets & Layout -->
+        <div id="tab-general" class="tab-content active">
+          <!-- Reading Mode -->
+          <div class="settings-group">
+            <label class="settings-label">Reading Mode</label>
+            <div class="mode-selector">
+              <button class="mode-option active" data-mode="paginated" title="Page by Page">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <small>Paged</small>
+              </button>
+              <button class="mode-option" data-mode="scrolled" title="Continuous Scroll">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M8 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-2"></path>
+                  <path d="M10 2v20"></path>
+                  <path d="M14 2v20"></path>
+                </svg>
+                <small>Scroll</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="separator"></div>
+
+          <!-- Presets -->
+          <label class="settings-label">Presets</label>
+          <div id="preset-list"></div>
+          <button id="save-preset-btn" class="btn btn-secondary save-preset-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Save Current as Preset
+          </button>
+          <!-- Save Preset Dialog (inline, hidden) -->
+          <div id="save-preset-dialog" class="save-preset-dialog hidden">
+            <input id="save-preset-name" type="text" placeholder="Enter preset name..." maxlength="30" />
+            <div class="save-preset-actions">
+              <button id="save-preset-confirm" class="btn btn-primary">Save</button>
+              <button id="save-preset-cancel" class="btn btn-secondary">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Appearance Tab: Typography, Theme, UI -->
+        <div id="tab-appearance" class="tab-content">
+          <!-- Typography -->
+          <div class="settings-group">
+            <label class="settings-label">Typography</label>
+            <div class="font-family-selector">
+              <button class="font-option active" data-font="serif">
+                <span style="font-family: Georgia, serif">Aa</span>
+                <small>Serif</small>
+              </button>
+              <button class="font-option" data-font="sans-serif">
+                <span style="font-family: -apple-system, sans-serif">Aa</span>
+                <small>Sans</small>
+              </button>
+              <button class="font-option" data-font="monospace">
+                <span style="font-family: 'Courier New', monospace">Aa</span>
+                <small>Mono</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <label class="settings-label">Font Size</label>
+            <div class="size-stepper">
+              <button id="font-size-down" class="btn btn-icon stepper-btn">−</button>
+              <span id="font-size-value" class="stepper-value">18px</span>
+              <button id="font-size-up" class="btn btn-icon stepper-btn">+</button>
+            </div>
+          </div>
+
+          <div class="separator"></div>
+
+          <!-- Theme Colors -->
+          <div class="settings-group">
+            <label class="settings-label">Theme Colors</label>
+            <div class="color-dual-row">
+              <div class="color-picker-row">
+                <input type="color" id="text-color-picker" class="color-input" value="#1a1a1a" />
+                <span class="color-label-sm">Text</span>
+              </div>
+              <div class="color-picker-row">
+                <input type="color" id="container-color-picker" class="color-input" value="#FFFFFF" />
+                <span class="color-label-sm">Bg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <label class="settings-label">Opacity</label>
+            <div class="slider-row">
+              <input type="range" id="container-opacity-slider" class="slider" min="0" max="100" value="95" />
+              <span id="container-opacity-value" class="slider-value">95%</span>
+            </div>
+          </div>
+
+          <!-- Glassmorphism -->
+          <div class="settings-group">
+            <div class="toggle-row">
+              <label class="toggle-switch">
+                <input type="checkbox" id="glass-toggle" />
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="toggle-label">Glass Effect</span>
+            </div>
+            <div id="glass-blur-group" class="slider-row sub-control hidden">
+              <label class="settings-label-sm">Blur</label>
+              <input type="range" id="glass-blur-slider" class="slider" min="0" max="40" value="12" />
+              <span id="glass-blur-value" class="slider-value">12px</span>
+            </div>
+          </div>
+
+          <div class="separator"></div>
+
+          <!-- Scrollbars -->
+          <div class="settings-group">
+            <label class="settings-label">Scrollbar</label>
+            <div class="color-dual-row">
+              <div class="color-picker-row">
+                <input type="color" id="scrollbar-track-picker" class="color-input" value="#1a1a1a" />
+                <span class="color-label-sm">Track</span>
+              </div>
+              <div class="color-picker-row">
+                <input type="color" id="scrollbar-thumb-picker" class="color-input" value="#4a9eff" />
+                <span class="color-label-sm">Thumb</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Atmosphere Tab: Background & Music -->
+        <div id="tab-atmosphere" class="tab-content">
+          <div class="settings-group">
+            <label class="settings-label">Visual Background</label>
+            <div class="bg-media-controls">
+              <button id="bg-media-pick" class="btn btn-secondary btn-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                Choose File
+              </button>
+              <button id="bg-media-clear" class="btn btn-ghost btn-sm">Clear</button>
+            </div>
+            <div id="bg-media-info" class="bg-media-info hidden">
+              <span id="bg-media-filename" class="bg-filename"></span>
+            </div>
+            <div id="bg-audio-group" class="toggle-row sub-control hidden">
+              <label class="toggle-switch">
+                <input type="checkbox" id="bg-audio-toggle" />
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="toggle-label">Video Audio</span>
+            </div>
+          </div>
+
+          <div class="separator"></div>
+
+          <div class="settings-group">
+            <label class="settings-label">Ambient Music</label>
+            <div class="bg-media-controls">
+              <button id="bg-music-pick" class="btn btn-secondary btn-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18V5l12-2v13"></path>
+                  <circle cx="6" cy="18" r="3"></circle>
+                  <circle cx="18" cy="16" r="3"></circle>
+                </svg>
+                Choose Audio
+              </button>
+              <button id="bg-music-clear" class="btn btn-ghost btn-sm">Clear</button>
+            </div>
+            <div id="bg-music-info" class="bg-media-info hidden">
+              <span id="bg-music-filename" class="bg-filename"></span>
+            </div>
+            <div id="bg-music-controls" class="hidden">
+              <div class="toggle-row sub-control">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="bg-music-toggle" />
+                  <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Play Music</span>
+              </div>
+              <div class="slider-row sub-control">
+                <label class="settings-label-sm">Volume</label>
+                <input type="range" id="bg-music-volume" class="slider" min="0" max="100" value="50" />
+                <span id="bg-music-volume-value" class="slider-value">50%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcut Overlay (hidden by default) -->
+  <div id="shortcut-overlay" class="hidden">
+    <div class="shortcut-panel">
+      <h2>Keyboard Shortcuts</h2>
+
+      <h3>Global</h3>
+      <ul>
+        <li><kbd>Ctrl/Cmd + O</kbd> Open EPUB</li>
+        <li><kbd>Ctrl/Cmd + P</kbd> Settings</li>
+        <li><kbd>Ctrl/Cmd + T</kbd> Toggle Toolbar</li>
+        <li><kbd>Ctrl/Cmd + Q</kbd> Quit</li>
+      </ul>
+
+      <h3>Reader</h3>
+      <ul>
+        <li><kbd>→</kbd> or <kbd>L</kbd> Next page</li>
+        <li><kbd>←</kbd> or <kbd>H</kbd> Previous page</li>
+        <li><kbd>Home</kbd> or <kbd>gg</kbd> First page</li>
+        <li><kbd>End</kbd> or <kbd>G</kbd> Last page</li>
+        <li><kbd>F</kbd> Toggle fullscreen</li>
+      </ul>
+
+      <button id="close-shortcut-overlay" class="btn btn-secondary">Close</button>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+  </div>
+
+  <script type="module" src="./scripts/main.js"></script>
+</body>
+
+</html>

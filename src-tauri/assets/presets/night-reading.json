@@ -1,0 +1,26 @@
+{
+    "version": "2.0",
+    "name": "Night Reading",
+    "author": "Epilogue",
+    "description": "Deep dark mode for eye comfort",
+    "background": {
+        "type": "image",
+        "path": "media/backgrounds/starry-night.svg"
+    },
+    "overlay": {
+        "color": "#000000",
+        "opacity": 0.4
+    },
+    "reader": {
+        "opacity": 0.80,
+        "backgroundColor": "#151520",
+        "textColor": "#B0B0C0",
+        "fontFamily": "serif",
+        "fontSize": 20,
+        "readingMode": "paginated",
+        "glassmorphism": true,
+        "glassBlur": 20,
+        "scrollbarTrack": "transparent",
+        "scrollbarThumb": "#3A3A50"
+    }
+}
