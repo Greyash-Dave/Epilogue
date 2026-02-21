@@ -154,8 +154,7 @@ export class LibraryManager {
                     </svg>
                 </div>
                 <h3>Open an EPUB to begin</h3>
-                <p>Drag and drop files here or click the Open button in the toolbar</p>
-                <button id="empty-open-btn" class="action-btn primary">Open File</button>
+                <p>Press Ctrl + O to Open a Epub File</p>
             `;
 
             // Center the message
