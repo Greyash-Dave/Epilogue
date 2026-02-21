@@ -6,7 +6,7 @@ Tune the mood with images, glassy overlays, and your own music while you read.
 
 ![Status](https://img.shields.io/badge/status-beta-orange)
 ![Platform](https://img.shields.io/badge/platform-Desktop-blue)
-![License](https://img.shields.io/github/license/Greyash-Dave/Epilogue)
+![License](https://img.shields.io/github/license/Greyash-Dave/epilogue)
 
 ## 📱 Screenshots
 
@@ -22,7 +22,7 @@ Tune the mood with images, glassy overlays, and your own music while you read.
 
 ## 📥 Download Epilogue
 
-**➡️ [Download the latest version for Windows](https://github.com/Greyash-Dave/Epilogue/releases/latest)**
+**➡️ [Download the latest version for Windows](https://github.com/Greyash-Dave/epilogue/releases/latest)**
 
 - Lightweight installer, no accounts, no ads.
 - Your books stay on your device – Epilogue reads local EPUB files only.
@@ -120,8 +120,8 @@ cargo install tauri-cli
 
 1. Clone the repository
 ```bash
-git clone https://github.com/Greyash-Dave/Epilogue.git
-cd Epilogue
+git clone https://github.com/Greyash-Dave/epilogue.git
+cd epilogue
 ```
 
 2. Development mode (all platforms)
@@ -152,8 +152,8 @@ cargo tauri build
 ```
 Output:
 ```
-src-tauri/target/release/bundle/nsis/Epilogue_x.x.x_x64-setup.exe
-src-tauri/target/release/bundle/msi/Epilogue_x.x.x_x64_en-US.msi
+src-tauri/target/release/bundle/nsis/epilogue_x.x.x_x64-setup.exe
+src-tauri/target/release/bundle/msi/epilogue_x.x.x_x64_en-US.msi
 ```
 
 - **Linux (.deb / .AppImage)**
@@ -198,7 +198,7 @@ The .dmg installer will be generated under `src-tauri/target/release/bundle/`.
 
 🗂 Project structure
 ```
-Epilogue/
+epilogue/
 ├── src/
 │   ├── index.html              # Main HTML structure
 │   ├── styles/                 # CSS modules
