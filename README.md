@@ -8,6 +8,16 @@ Tune the mood with images, glassy overlays, and your own music while you read.
 ![Platform](https://img.shields.io/badge/platform-Desktop-blue)
 ![License](https://img.shields.io/github/license/Greyash-Dave/Epilogue)
 
+## 📱 Screenshots
+
+<div align="center">
+
+<img src=".github/screenshots/scr1.JPG" width="300">
+<img src=".github/screenshots/scr2.JPG" width="300" hspace="20">
+<img src=".github/screenshots/scr3.JPG" width="300">
+
+</div>
+
 ---
 
 ## 📥 Download Epilogue
